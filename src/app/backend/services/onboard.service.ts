@@ -14,8 +14,7 @@ const httpOptions = {
 let headers: HttpHeaders = new HttpHeaders();
 headers = headers.append('Accept', 'application/json'); 
 headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-//headers = headers.append('Authorization', 'Bearer ' + "sdflksjflksdfj");
+// headers = headers.append('Authorization', "sdflksjflksdfj");
 
 @Injectable({
   providedIn: 'root'

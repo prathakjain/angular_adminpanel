@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+ 
+//import { AuthInterceptor } from './services/auth.interceptor';
 
 
 import { BackendComponent } from './backend.component';
@@ -39,6 +42,12 @@ import { WithoutSidebarComponent } from './layout/without-sidebar/without-sideba
     FormsModule,
     BackendRouting
   ],
-  providers: []
+  providers: [
+    //   {
+    //   provide : HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi   : true,
+    // }
+  ]
 })
 export class BackendModule { }
