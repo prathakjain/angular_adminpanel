@@ -10,9 +10,20 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
 
   constructor(private onboardservice: OnboardService, private router: Router) { }
-
+  error : string;
+  message : string;
   ngOnInit() {
-
+    this.onboardservice.getLogindata().subscribe(
+      ( data : any ) => { 
+        console.log(data);
+        if(data['status'] == 1){ 
+          
+        } else {
+          this.message = data['message']; 
+        }
+      },
+      error => this.error = error
+    )
   }
 
   logout(){

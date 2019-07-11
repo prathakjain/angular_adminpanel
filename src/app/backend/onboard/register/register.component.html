@@ -7,7 +7,7 @@
                         <h4 class="text-uppercase font-bold m-b-0">Register</h4>
                     </div>
                     <div class="p-20">
-    <form class="form-horizontal m-t-20" #registerfrm="ngForm" (ngSubmit)="onSubmit();" id="registerfrm" novalidate >
+    <form class="form-horizontal m-t-20" #registerfrm="ngForm" (ngSubmit)="onSubmit();" novalidate >
         {{message}} 
         {{error}}
         <div class="form-row">
@@ -29,16 +29,16 @@
      
         <div class="form-row">
             <div class="form-group col-md-6"> 
-                <label for="inputpassword" class="col-form-label">Password</label>
-                <input class="form-control" id="inputpassword" name="password" type="password" required="" placeholder="Password" [(ngModel)]="register.password" #password="ngModel" [ngClass]= "{ 'is-invalid' : registerfrm.submitted && password.invalid }" />
+                <label for="password" class="col-form-label">Password</label>
+                <input class="form-control"  name="password" type="password" required="" placeholder="Password" [(ngModel)]="register.password" #password="ngModel" [ngClass]= "{ 'is-invalid' : registerfrm.submitted && password.invalid }" minlength="10" />
                 <div class="invalid-feedback">
                     <div>Password is required</div>
                 </div>
             </div>
     
             <div class="form-group col-md-6"> 
-                <label for="inputconfirmpass" class="col-form-label">Confirm Password</label>
-                <input class="form-control" type="password" name="confirm_password" id="inputconfirmpass" required=""  placeholder="Confirm Password" [(ngModel)]="register.confirm_password" #confirm_password="ngModel" [ngClass]= "{ 'is-invalid' : registerfrm.submitted && confirm_password.invalid }" /> 
+                <label for="confirm_password" class="col-form-label">Confirm Password</label>
+                <input class="form-control" type="password" name="confirm_password" required=""  placeholder="Confirm Password" [(ngModel)]="register.confirm_password" #confirm_password="ngModel" [ngClass]= "{ 'is-invalid' : registerfrm.submitted && confirm_password.invalid }" /> 
                 <div class="invalid-feedback">
                     <div>Confirm Password is required</div>
                 </div>
@@ -62,9 +62,15 @@
         </div>
         <div class="form-group text-center m-t-40">
             <div class="col-xs-12">
-                <button [disabled]='registerfrm.valid' class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">
+                <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">
                     Register
                 </button>
+
+                <!-- <button [disabled]='!registerfrm.valid' class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">
+                        Register
+                    </button> -->
+
+
             </div>
         </div>
     </form>
@@ -73,10 +79,8 @@
                 </div>
                 <!-- end card-box -->
     
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <p class="text-muted">Already have account?<a routerLink="/login" class="text-primary m-l-5"><b>Sign In</b></a></p>
-            </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <p class="text-muted">Already have account?<a routerLink="/login" class="text-primary m-l-5"><b>Sign In</b></a></p>
         </div>
-    
-            
+    </div>

@@ -5,26 +5,28 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map, filter, switchMap } from 'rxjs/operators'; 
 
-
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded'
   })
 };
 
+let headers: HttpHeaders = new HttpHeaders();
+headers = headers.append('Accept', 'application/json'); 
+headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+//headers = headers.append('Authorization', 'Bearer ' + "sdflksjflksdfj");
+
 @Injectable({
   providedIn: 'root'
 })
-export class OnboardService {
-
-  
+export class OnboardService {  
 
   // private serverUrl = "http://127.0.0.1/angular/webservices/";
   private serverUrl = "https://fads.consagous.co.in/webservices/";
   constructor(private http: HttpClient) {
 
-  } 
+  }  
 
   registration(data :any){
     //registration
@@ -56,8 +58,8 @@ export class OnboardService {
     );
   }
 
-  getLogindata(){
-    return this.http.get<Onboard[]>(this.serverUrl+'users/get_profile').pipe(
+  getLogindata(){ 
+    return this.http.get<Onboard[]>(this.serverUrl+'test/get_profile', {headers: headers}).pipe(
       catchError(this.handleError)
     );
   }
@@ -65,6 +67,7 @@ export class OnboardService {
   logout(): void {
     localStorage.setItem('isLoggedIn', "false");
     localStorage.removeItem('Authorization');
+    localStorage.removeItem('User_info');
   } 
 
   private handleError(error: HttpErrorResponse) {
